@@ -162,6 +162,7 @@ module.exports = class ColorPicker extends Component {
 	static defaultProps = {
 		row: false,
 		noSnap: false,
+		noWheel: false,
 		thumbSize: 50,
 		sliderSize: 20,
 		discrete: false,
@@ -523,6 +524,7 @@ module.exports = class ColorPicker extends Component {
 			style,
 			thumbSize,
 			sliderSize,
+			noWheel,
 			swatchesLast,
 			swatchesOnly,
 			discrete,
@@ -583,7 +585,7 @@ module.exports = class ColorPicker extends Component {
 		return (
 			<View style={[ss.root,row?{flexDirection:'row'}:{},style]}>
 				{ swatches && !swatchesLast && <View style={[ss.swatches,swatchStyle,swatchFirstStyle]} key={'SW'}>{ this.swatches }</View> }
-				{ !swatchesOnly && <View style={[ss.wheel]} key={'$1'} onLayout={this.onSquareLayout}>
+				{ !noWheel && !swatchesOnly && <View style={[ss.wheel]} key={'$1'} onLayout={this.onSquareLayout}>
 					{ this.wheelWidth>0 && <View style={[{padding:thumbSize/2,width:this.wheelWidth,height:this.wheelWidth}]}>
 						<View style={[ss.wheelWrap]}>
 							<Image style={ss.wheelImg} source={srcWheel} />
